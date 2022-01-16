@@ -1,0 +1,15 @@
+La répresentation:
+1. Si notre joueur gagne, il reçoit 10 points.
+2. Si notre joueur perde, il perds 10 points.
+3. Si c'est un match nul, notre joueur ni réçoit des points, ni les perds.
+
+Les règles:
+1. Notre joueur essaie de MAXIMISER ses points pendant son tour.
+2. Le joueur ennemi essaie de MINIMISER les points de notre joueur pendant son tour.
+
+L'algorithme:
+1. Si le jeu est terminé(l'un des joueurs a gagné ou il n'y a plus de place à utiliser), retourne les points.
+2. Si ce n'est pas le cas, generer un nouveau liste des tours possibles pour chaque joueur(récursivement)
+3. Calculer les points points potentiels pour chaque cas possible.
+4. Si c'est le tour de notre joueur, retourner la situation de jeu MAXIMISANT les points.
+5. À l'invers, si c'est le tour du joueur ennemi, retourner la situation de jeu MINIMISANT les points.
