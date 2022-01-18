@@ -2,45 +2,38 @@
 <head>
     <title>Hello, World!</title>
     <meta charset="utf-8">
-    <style>
-        #game-board {
-            font-size: xx-large;
-            border-collapse: collapse;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        td {
-            padding-left: 8px;
-            padding-right: 8px;
-            border: darkslategray solid;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Tic_tac_toe.svg/800px-Tic_tac_toe.svg.png" width="75">
-        <h1>A simple tic-tac-toe game</h1>
+        <div class="fixed-container">A simple tic-tac-toe game!</div>
     </header>
     <main>
-        <table id="game-board">
-            <tr>
-                <td>X</td>
-                <td>O</td>
-                <td>X</td>
-            </tr>
-            <tr>
-                <td>O</td>
-                <td>X</td>
-                <td>O</td>
-            </tr>
-            <tr>
-                <td>O</td>
-                <td>O</td>
-                <td>_</td>
-            </tr>
-        </table>
+        <article class="fixed-container">
+            <h1 class="main-text">The game board</h1>
+            <table id="game-board">
+                <tr>
+                    <td>X</td>
+                    <td>O</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
+                </tr>
+                <tr>
+                    <td>O</td>
+                    <td>O</td>
+                    <td>_</td>
+                </tr>
+            </table>
+            <h3 class="main-text">My turn!</h3>
+        </article>
     </main>
-    <footer>by Aleksandr Kudashkin</footer>
+    <footer>
+        <div class="fixed-container" id="signed-note">
+            by Aleksandr Kudashkin
+        </div>
+    </footer>
 </body>
