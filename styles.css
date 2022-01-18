@@ -1,0 +1,53 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    min-width: 1000px;
+}
+
+header {
+    font-size: x-large;
+    color: white;
+    background-color:darkolivegreen;
+}
+
+main {
+    background-color: rgb(236, 236, 208);
+}
+
+footer {
+    color: white;
+    background-color: black;
+}
+
+article {
+    background-color: beige;
+}
+
+.fixed-container {
+    width: 960px;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+
+.main-text {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+#signed-note {
+    font-style: italic;
+    text-align: right;
+}
+
+#game-board {
+    font-size: xx-large;
+    border-collapse: collapse;
+    margin: 20px auto 10px;
+}
+
+#game-board td {
+    padding: 0 8px;
+    border: darkslategray solid;
+    text-align: center;
+}
