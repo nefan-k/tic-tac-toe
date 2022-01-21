@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <title>Hello, World!</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css')}}">
+</head>
+<body>
+    <header>
+        <div class="fixed-container">A simple tic-tac-toe game!</div>
+    </header>
+    <main>
+        <article class="fixed-container">
+            <h1 class="main-text">The game board</h1>
+            <table id="game-board">
+                <tr>
+                    <td>X</td>
+                    <td>O</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
+                </tr>
+                <tr>
+                    <td>O</td>
+                    <td>O</td>
+                    <td>_</td>
+                </tr>
+            </table>
+            <h3 class="main-text">My turn!</h3>
+        </article>
+    </main>
+    <footer>
+        <div class="fixed-container" id="signed-note">
+            by Aleksandr Kudashkin
+        </div>
+    </footer>
+</body>
