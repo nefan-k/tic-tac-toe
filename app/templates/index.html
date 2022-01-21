@@ -10,7 +10,7 @@
         var board = {
             0: "_",
             1: "_",
-            2: "X",
+            2: "_",
             3: "_",
             4: "_",
             5: "_",
@@ -18,6 +18,8 @@
             7: "_",
             8: "_"
         }
+
+        var gameEnded = false;
 
         function renderBoard(board) {
             $.each(board, function( cellId, value ) {
@@ -37,20 +39,20 @@
                     7: "_",
                     8: "_"
                 };
-                renderBoard(board);
+            renderBoard(board);
+            gameEnded = false;
+            $("#game-status").html("...");
         }
 
         function endGame(status) {
             if ( status === "winner") {
-                alert("You win!");
-                clearBoard();
+                $("#game-status").html("You win!");
             } else if ( status === "looser") {
-                alert("You loose!");
-                clearBoard();
+                $("#game-status").html("You loose!");
             } else if ( status === "draft" ) {
-                alert("Tie!");
-                clearBoard();
+                $("#game-status").html("Tie!");
             }
+            gameEnded = true;
         }
 
         $(document).ready(function(){
@@ -58,7 +60,7 @@
 
             $("table#game-board td").click(function() {
                 var elementId = $(this).attr("id");
-                if (board[elementId] === "_" ) {
+                if (board[elementId] === "_" && !gameEnded) {
                     $.ajax({
                         type: "POST",
                         url: "/turn",
@@ -66,16 +68,19 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(msg) {
+                            board = msg.board;
+                            renderBoard(board);
                             if (msg.status !== "ongoing") {
                                 endGame(msg.status);
-                            } else {
-                                board = msg.board;
-                                renderBoard(board);
                             }
                         }
                     });
                 }
             });
+
+            $("#button-reset").click(function() {
+                clearBoard()
+            })
 
         });
     </script>
@@ -104,7 +109,10 @@
                     <td id="8"></td>
                 </tr>
             </table>
-            <h3 class="main-text">My turn!</h3>
+            <div class="main-text">
+                <h3  id="game-status" >...</h3>
+                <button id="button-reset">Start game</button>
+            </div>
         </article>
     </main>
     <footer>

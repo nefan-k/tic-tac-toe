@@ -47,8 +47,12 @@ article {
 }
 
 #game-board td {
-    padding: 0 8px;
+    width: 37px;
     border: darkslategray solid;
     text-align: center;
-    width: 30px;
+}
+
+#button-reset {
+    color:white;
+    background-color: black;
 }
