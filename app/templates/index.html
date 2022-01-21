@@ -3,6 +3,82 @@
     <title>Hello, World!</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script>
+        var board = {
+            0: "_",
+            1: "_",
+            2: "X",
+            3: "_",
+            4: "_",
+            5: "_",
+            6: "_",
+            7: "_",
+            8: "_"
+        }
+
+        function renderBoard(board) {
+            $.each(board, function( cellId, value ) {
+                $("#" + cellId).html(value);
+            });
+        }
+
+        function clearBoard() {
+            board = {
+                    0: "_",
+                    1: "_",
+                    2: "_",
+                    3: "_",
+                    4: "_",
+                    5: "_",
+                    6: "_",
+                    7: "_",
+                    8: "_"
+                };
+                renderBoard(board);
+        }
+
+        function endGame(status) {
+            if ( status === "winner") {
+                alert("You win!");
+                clearBoard();
+            } else if ( status === "looser") {
+                alert("You loose!");
+                clearBoard();
+            } else if ( status === "draft" ) {
+                alert("Tie!");
+                clearBoard();
+            }
+        }
+
+        $(document).ready(function(){
+            renderBoard(board);
+
+            $("table#game-board td").click(function() {
+                var elementId = $(this).attr("id");
+                if (board[elementId] === "_" ) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/turn",
+                        data: JSON.stringify({ id: $(this).attr("id"), board: board }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function(msg) {
+                            if (msg.status !== "ongoing") {
+                                endGame(msg.status);
+                            } else {
+                                board = msg.board;
+                                renderBoard(board);
+                            }
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -13,19 +89,19 @@
             <h1 class="main-text">The game board</h1>
             <table id="game-board">
                 <tr>
-                    <td>X</td>
-                    <td>O</td>
-                    <td>X</td>
+                    <td id="0"></td>
+                    <td id="1"></td>
+                    <td id="2"></td>
                 </tr>
                 <tr>
-                    <td>O</td>
-                    <td>X</td>
-                    <td>O</td>
+                    <td id="3"></td>
+                    <td id="4"></td>
+                    <td id="5"></td>
                 </tr>
                 <tr>
-                    <td>O</td>
-                    <td>O</td>
-                    <td>_</td>
+                    <td id="6"></td>
+                    <td id="7"></td>
+                    <td id="8"></td>
                 </tr>
             </table>
             <h3 class="main-text">My turn!</h3>
