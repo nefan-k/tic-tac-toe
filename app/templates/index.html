@@ -19,7 +19,7 @@
             8: "_"
         }
 
-        var gameEnded = false;
+        var gameEnded = true;
 
         function renderBoard(board) {
             $.each(board, function( cellId, value ) {
@@ -41,7 +41,7 @@
                 };
             renderBoard(board);
             gameEnded = false;
-            $("#game-status").html("...");
+            $("#game-status").html("Your turn!");
         }
 
         function endGame(status) {
